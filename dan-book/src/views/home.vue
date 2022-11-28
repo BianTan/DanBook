@@ -26,6 +26,7 @@ import axios from 'axios'
 const bookList = ref([])
 const router = useRouter()
 
+// 获取书籍列表
 const getBookList = async () => {
   try {
     const result = await axios.get('http://192.168.2.101:3000/book/list')
@@ -37,7 +38,7 @@ const getBookList = async () => {
     console.log(e)
   }
 }
-
+// 书籍点击
 const handleItemClick = (bookId) => {
   router.push({
     name: 'BookDetail',

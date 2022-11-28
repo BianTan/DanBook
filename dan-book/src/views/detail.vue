@@ -48,14 +48,17 @@
 <script lang='ts' setup>
 import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStore } from '@/store/modules/store'
 import axios from 'axios'
 
 const route = useRoute()
+const store = useStore()
 const bookId = ref(0)
 
 const chapterList = ref([])
 const chapterDetail = ref()
 const chapterActiveTab = ref(0)
+
 const showChapterList = ref(false)
 const passages = computed(() => {
   if (!chapterDetail.value) return []
@@ -88,6 +91,11 @@ const getChapterDetail = async (chapterId) => {
     const { code, data } = result.data
     if (code === 200) {
       chapterDetail.value = data
+      // 更新最新阅读章节
+      store.updateReadRecords({
+        bookId: bookId.value,
+        chapterId
+      })
     }
   } catch (e) {
     console.log(e)
@@ -109,12 +117,16 @@ const handleClick = (type) => {
     }
   }
 }
+// 章节被点击
 const handleChapterItemClick = (chapterId) => {
+  // 获取章节详情
   getChapterDetail(chapterId)
+  // 回到顶部
   scrollTo({
     top: 0,
     left: 0
   })
+  // 隐藏章节边栏
   showChapterList.value = false
 }
 
@@ -122,9 +134,12 @@ const init = async () => {
   const { bookId: id } = route.params
   if (!id) return
   bookId.value = id
+  // 获取章节列表
   await getChapterList()
+  // 章节列表为空
   if (!chapterList.value.length) return
-  const chapterId = chapterList.value[0].chapterId
+  // 章节 ID
+  const chapterId = store.records[bookId.value] || chapterList.value[0].chapterId
   getChapterDetail(chapterId)
 }
 init()
