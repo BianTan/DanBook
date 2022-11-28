@@ -4,15 +4,24 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.41"
+    "amfe-flexible": "^2.2.1",
+    "axios": "^1.2.0",
+    "normalize.css": "^8.0.1",
+    "postcss": "^8.4.19",
+    "postcss-pxtorem": "^6.0.0",
+    "vant": "^4.0.0",
+    "vue": "^3.2.41",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",
+    "sass": "^1.56.1",
+    "unplugin-vue-components": "^0.22.11",
     "vite": "^3.2.3"
   }
 }

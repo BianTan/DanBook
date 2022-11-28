@@ -116,5 +116,8 @@ module.exports = function () {
   const app = express()
   const server = http.createServer(app)
 
+  const cors = require('cors')
+  app.use(cors())
+
   runStart(app, server)
 }
