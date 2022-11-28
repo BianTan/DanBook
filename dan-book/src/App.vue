@@ -1,7 +1,11 @@
 <template>
-  <router-view />
+  <div class="router-view">
+    <router-view />
+  </div>
 </template>
 
-<script lang='ts' setup>
-
-</script>
+<style lang="scss">
+.router-view {
+  min-height: 100vh;
+}
+</style>

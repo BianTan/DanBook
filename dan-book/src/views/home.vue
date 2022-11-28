@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <van-nav-bar title="DanBook" />
     <div class="book-list mode-2">
       <div
         v-for="item in bookList"

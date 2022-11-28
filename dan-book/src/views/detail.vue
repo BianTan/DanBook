@@ -152,6 +152,7 @@ init()
   background-color: #e5d5ab;
   padding: 12px;
   position: relative;
+  overflow: hidden;
   .title {
     font-size: 28px;
     margin: 12px 0;
